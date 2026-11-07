@@ -1,13 +1,13 @@
 use std::{env, process::ExitCode};
 
 use anyhow::{Context, Result};
-use omarchy_launch_screensaver::{engine::Animation, launch, options, options::Options, wayland};
+use collie_screensaver::{engine::Animation, launch, options, options::Options, wayland};
 
 fn main() -> ExitCode {
     let parsed = match options::parse() {
         Ok(parsed) => parsed,
         Err(error) => {
-            eprintln!("omarchy-launch-screensaver: {error}");
+            eprintln!("collie-screensaver: {error}");
             return ExitCode::from(2);
         }
     };
@@ -18,7 +18,7 @@ fn main() -> ExitCode {
     let input = match options::load_input(&options) {
         Ok(input) => input,
         Err(error) => {
-            eprintln!("omarchy-launch-screensaver: {error:#}");
+            eprintln!("collie-screensaver: {error:#}");
             return ExitCode::FAILURE;
         }
     };
@@ -32,7 +32,7 @@ fn report(result: Result<i32>) -> ExitCode {
     match result {
         Ok(code) => ExitCode::from(code.clamp(0, 255) as u8),
         Err(error) => {
-            eprintln!("omarchy-launch-screensaver: {error:#}");
+            eprintln!("collie-screensaver: {error:#}");
             ExitCode::FAILURE
         }
     }

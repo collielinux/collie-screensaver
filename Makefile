@@ -1,4 +1,4 @@
-# omarchy-launch-screensaver
+# collie-screensaver
 #
 #   make          release build
 #   make check    tests and compiler checks
@@ -10,7 +10,7 @@ PREFIX           ?= /usr/local
 CARGO            ?= cargo
 CARGO_TARGET_DIR ?= build/rust
 RUNFLAGS          ?=
-BIN               := $(CARGO_TARGET_DIR)/release/omarchy-launch-screensaver
+BIN               := $(CARGO_TARGET_DIR)/release/collie-screensaver
 
 export CARGO_TARGET_DIR
 
@@ -34,4 +34,4 @@ run: all
 	$(BIN) force $(RUNFLAGS)
 
 install: all
-	install -Dm755 $(BIN) $(DESTDIR)$(PREFIX)/bin/omarchy-launch-screensaver
+	install -Dm755 $(BIN) $(DESTDIR)$(PREFIX)/bin/collie-screensaver

@@ -5,7 +5,7 @@ use std::{
     time::Instant,
 };
 
-use omarchy_launch_screensaver::{engine::Animation, options::Options, raster::Rasterizer};
+use collie_screensaver::{engine::Animation, options::Options, raster::Rasterizer};
 
 const WIDTH: i32 = 2560;
 const HEIGHT: i32 = 1440;
@@ -131,7 +131,7 @@ fn advance_and_render(
     animation: &mut Animation,
     rasterizer: &mut Rasterizer,
     pixels: &mut [u8],
-    previous_cells: &mut Vec<omarchy_launch_screensaver::vt::Cell>,
+    previous_cells: &mut Vec<collie_screensaver::vt::Cell>,
     width: i32,
     height: i32,
     cols: i32,

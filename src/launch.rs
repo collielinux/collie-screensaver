@@ -8,7 +8,7 @@ use std::{
 
 use fs2::FileExt;
 
-const APP_ID: &[u8] = b"org.omarchy.screensaver";
+const APP_ID: &[u8] = b"org.collie.screensaver";
 
 pub fn already_running() -> bool {
     let own_pid = std::process::id().to_string();
@@ -29,7 +29,7 @@ pub fn acquire_lock() -> Option<File> {
     let path = env::var_os("XDG_RUNTIME_DIR")
         .map(PathBuf::from)
         .unwrap_or_else(|| PathBuf::from("/tmp"))
-        .join("omarchy-screensaver.lock");
+        .join("collie-screensaver.lock");
     let mut file = match OpenOptions::new()
         .read(true)
         .write(true)
@@ -49,8 +49,8 @@ pub fn acquire_lock() -> Option<File> {
 }
 
 pub fn toggled_off() -> bool {
-    if command_exists("omarchy-toggle-enabled") {
-        return Command::new("omarchy-toggle-enabled")
+    if command_exists("collie-toggle-enabled") {
+        return Command::new("collie-toggle-enabled")
             .arg("screensaver-off")
             .stdout(Stdio::null())
             .stderr(Stdio::null())
@@ -58,22 +58,22 @@ pub fn toggled_off() -> bool {
             .is_ok_and(|status| status.success());
     }
     env::var_os("HOME").map(PathBuf::from).is_some_and(|home| {
-        home.join(".local/state/omarchy/toggles/screensaver-off")
+        home.join(".local/state/collie/toggles/screensaver-off")
             .exists()
     })
 }
 
 pub fn session_locked() -> bool {
-    if !command_exists("omarchy-shell") {
+    if !command_exists("collie-shell") {
         return false;
     }
     let output = if command_exists("timeout") {
         Command::new("timeout")
-            .args(["--kill-after=1s", "2s", "omarchy-shell", "lock", "isLocked"])
+            .args(["--kill-after=1s", "2s", "collie-shell", "lock", "isLocked"])
             .stderr(Stdio::null())
             .output()
     } else {
-        Command::new("omarchy-shell")
+        Command::new("collie-shell")
             .args(["lock", "isLocked"])
             .stderr(Stdio::null())
             .output()

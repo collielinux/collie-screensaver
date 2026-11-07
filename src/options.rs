@@ -135,7 +135,7 @@ pub fn load_input(options: &Options) -> Result<String> {
         return Ok(value);
     }
     if let Some(home) = env::var_os("HOME") {
-        let path = PathBuf::from(home).join(".config/omarchy/branding/screensaver.txt");
+        let path = PathBuf::from(home).join(".config/collie/branding/screensaver.txt");
         if let Ok(value) = fs::read_to_string(path)
             && !value.is_empty()
         {
@@ -147,10 +147,10 @@ pub fn load_input(options: &Options) -> Result<String> {
 
 pub fn print_help() {
     print!(
-        r#"omarchy-launch-screensaver — Omarchy screensaver (Rust + Wayland + ttfx)
+        r#"collie-screensaver — Collie screensaver (Rust + Wayland + ttfx)
 
 Usage:
-  omarchy-launch-screensaver [force] [options]
+  collie-screensaver [force] [options]
 
 Native layer-shell overlay per output. No terminal, Qt, C++, or ttfx child.
 Frames are committed only after content invalidation and compositor readiness.
@@ -174,7 +174,7 @@ Frames are committed only after content invalidation and compositor readiness.
   --frames N              headless only (default 30)
   --cols N --rows N       headless canvas (default 80x24)
 
-Input file default: ~/.config/omarchy/branding/screensaver.txt
+Input file default: ~/.config/collie/branding/screensaver.txt
 then the bundled assets/screensaver.txt.
 "#
     );

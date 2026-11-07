@@ -1,7 +1,7 @@
 use std::process::{Command, Stdio};
 
 fn binary() -> Command {
-    Command::new(env!("CARGO_BIN_EXE_omarchy-launch-screensaver"))
+    Command::new(env!("CARGO_BIN_EXE_collie-screensaver"))
 }
 
 #[test]
